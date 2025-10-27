@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Colorful Webpage</title>
+    <style>
+        :root{
+            --bg-1: linear-gradient(135deg,#ff9a9e 0%,#fad0c4 100%);
+            --bg-2: linear-gradient(135deg,#a18cd1 0%,#fbc2eb 100%);
+            --bg-3: linear-gradient(135deg,#89f7fe 0%,#66a6ff 100%);
+            --card-bg: rgba(255,255,255,0.9);
+            --glass: rgba(255,255,255,0.18);
+            --accent: #fff;
+            --muted: rgba(0,0,0,0.6);
+            --shadow: 0 8px 24px rgba(15,15,15,0.12);
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            min-height:100vh;
+            background: var(--bg-1);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:32px;
+            transition:background 400ms ease;
+            color:var(--muted);
+        }
+
+        .container{
+            width:100%;
+            max-width:1100px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.55));
+            border-radius:16px;
+            box-shadow:var(--shadow);
+            overflow:hidden;
+            backdrop-filter: blur(8px) saturate(120%);
+            display:grid;
+            grid-template-columns: 1fr 420px;
+            gap:0;
+        }
+
+        header{
+            padding:40px;
+            background: linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+        }
+
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:16px;
+            margin-bottom:20px;
+        }
+
+        .logo{
+            width:56px;height:56px;border-radius:12px;
+            background: conic-gradient(from 180deg at 50% 50%, #f6d365, #fda085, #fbc2eb, #a6c1ee, #89f7fe);
+            display:flex;align-items:center;justify-content:center;
+            color:#fff;font-weight:700;box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            font-size:20px;
+        }
+
+        h1{
+            font-size:24px;color:#111;
+            letter-spacing:-0.3px;
+        }
+        p.lead{
+            margin-top:8px;color:var(--muted);
+            font-size:14px;
+        }
+
+        .grid{
+            padding:24px 40px 40px 40px;
+            display:grid;
+            grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+            gap:20px;
+            align-items:start;
+        }
+
+        .card{
+            background: var(--card-bg);
+            border-radius:12px;padding:18px;
+            box-shadow: 0 6px 18px rgba(10,10,10,0.06);
+            transition:transform 180ms ease, box-shadow 180ms ease;
+            cursor:default;
+            display:flex;flex-direction:column;gap:12px;
+            min-height:120px;
+        }
+        .card:hover{ transform:translateY(-6px); box-shadow: 0 18px 36px rgba(10,10,10,0.12); }
+
+        .swatch{
+            height:56px;border-radius:8px;overflow:hidden;
+            box-shadow: inset 0 -18px 30px rgba(0,0,0,0.06);
+        }
+
+        .card h3{ font-size:16px; color:#111; }
+        .card p{ font-size:13px; color:var(--muted); margin-top:auto }
+
+        aside{
+            padding:28px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            display:flex;flex-direction:column;gap:18px;
+            align-items:stretch;
+        }
+
+        .panel{
+            background:var(--glass);
+            border-radius:12px;padding:12px; color:#fff; font-weight:600;
+            display:flex;align-items:center;justify-content:space-between;
+            gap:12px;
+        }
+
+        .colors{
+            display:flex;gap:8px;align-items:center;
+        }
+
+        .dot{
+            width:40px;height:40px;border-radius:8px;border:2px solid rgba(255,255,255,0.12);
+            display:inline-block;
+        }
+
+        .controls{ display:flex;flex-direction:column;gap:10px; margin-top:6px; }
+        button.btn{
+            background:rgba(255,255,255,0.14); color:#fff; border:0;padding:10px 12px;border-radius:10px;
+            cursor:pointer;font-weight:600;
+        }
+        button.btn:hover{ filter:brightness(1.06) }
+
+        footer{ padding:14px 40px; font-size:13px; color:var(--muted); background:transparent; }
+
+        /* responsive */
+        @media (max-width:980px){
+            .container{ grid-template-columns: 1fr; }
+            aside{ order:-1 }
+        }
+
+        /* color variants used by JS */
+        .bg-1{ background: var(--bg-1); }
+        .bg-2{ background: var(--bg-2); }
+        .bg-3{ background: var(--bg-3); }
+
+    </style>
+</head>
+<body class="bg-1">
+    <div class="container" role="main">
+        <div>
+            <header>
+                <div class="brand">
+                    <div class="logo">CP</div>
+                    <div>
+                        <h1>Colorful Playground</h1>
+                        <p class="lead">A simple, colorful webpage — cards, swatches and playful UI.</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="grid" aria-live="polite">
+                <article class="card">
+                    <div class="swatch" style="background:linear-gradient(90deg,#ff9a9e,#fad0c4)"></div>
+                    <h3>Warm Sunrise</h3>
+                    <p>Soft coral and peach tones to start the day with energy.</p>
+                </article>
+
+                <article class="card">
+                    <div class="swatch" style="background:linear-gradient(90deg,#a18cd1,#fbc2eb)"></div>
+                    <h3>Lavender Breeze</h3>
+                    <p>Calming purple gradients for a serene interface.</p>
+                </article>
+
+                <article class="card">
+                    <div class="swatch" style="background:linear-gradient(90deg,#89f7fe,#66a6ff)"></div>
+                    <h3>Ocean Mist</h3>
+                    <p>Cool blues for clarity and focus.</p>
+                </article>
+
+                <article class="card">
+                    <div class="swatch" style="background:linear-gradient(90deg,#f6d365,#fda085)"></div>
+                    <h3>Golden Hour</h3>
+                    <p>Warm playful tones that pop on any page.</p>
+                </article>
+
+                <article class="card">
+                    <div class="swatch" style="background:linear-gradient(90deg,#a6c1ee,#89f7fe)"></div>
+                    <h3>Skyline</h3>
+                    <p>Fresh gradients mixing cool and warm highlights.</p>
+                </article>
+
+                <article class="card">
+                    <div class="swatch" style="background:linear-gradient(90deg,#ffd89b,#19547b)"></div>
+                    <h3>Contrast Pop</h3>
+                    <p>High-contrast pairings for emphasis and action areas.</p>
+                </article>
+            </div>
+
+            <footer>
+                Tip: Click the color buttons to change the page mood.
+            </footer>
+        </div>
+
+        <aside>
+            <div class="panel" aria-hidden="false">
+                <div style="display:flex;flex-direction:column;">
+                    <div style="font-size:14px">Theme</div>
+                    <div style="font-size:12px;opacity:0.9">Choose a colorful background</div>
+                </div>
+                <div class="colors">
+                    <button class="btn" data-bg="bg-1" title="Warm">Warm</button>
+                    <button class="btn" data-bg="bg-2" title="Lavender">Lavender</button>
+                    <button class="btn" data-bg="bg-3" title="Ocean">Ocean</button>
+                </div>
+            </div>
+
+            <div class="panel" style="flex-direction:column;align-items:flex-start;">
+                <div style="width:100%;display:flex;align-items:center;justify-content:space-between;">
+                    <div style="font-size:14px">Randomize cards</div>
+                    <button id="shuffle" class="btn" title="Shuffle">Shuffle</button>
+                </div>
+                <small style="opacity:0.85">Mix card order to discover different color combinations.</small>
+            </div>
+
+            <div class="panel" style="justify-content:center;">
+                <div style="text-align:center">
+                    <div style="font-size:12px;opacity:0.9">Responsive • Minimal • Colorful</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Slight interaction: change body class for mood and shuffle cards
+        document.querySelectorAll('.btn[data-bg]').forEach(btn=>{
+            btn.addEventListener('click', ()=> {
+                document.body.className = btn.dataset.bg;
+            });
+        });
+
+        document.getElementById('shuffle').addEventListener('click', ()=> {
+            const grid = document.querySelector('.grid');
+            const cards = Array.from(grid.children);
+            const shuffled = cards
+                .map(a=>({r:Math.random(), el:a}))
+                .sort((x,y)=>x.r-y.r)
+                .map(x=>x.el);
+            shuffled.forEach(el=>grid.appendChild(el));
+        });
+    </script>
+</body>
+</html></div>
